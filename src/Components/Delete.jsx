@@ -1,7 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './Navbar'
 
 const Delete = () => {
+    const [input,changeInput]=useState(
+        {"ID":""}
+    )
+
+    const inputHandler =(event)=>{
+        changeInput({...input,[event.target.name]:event.target.value})
+    }
+
+    const readValue =()=>{
+        console.log(input)
+    }
   return (
     <div>
         <Navbar /><br></br>
@@ -15,10 +26,10 @@ const Delete = () => {
 </div><br></br>
                 <div className="row">
                     <div className="col col-12 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" className="form-control" placeholder='Enter ID to delete'/>
+                        <input type="text" className="form-control" name='ID' placeholder='Enter ID to delete' value={input.ID} onChange={inputHandler}/>
                     </div>
                     <div className="col col-12 col-sm-6 col-md-6 col-lg-6">
-                        <button className="btn btn-danger">Delete</button>
+                        <button className="btn btn-danger" onClick={readValue}>Delete</button>
                     </div>
                 </div>
                 </div>

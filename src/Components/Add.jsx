@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './Navbar'
 
 const Add = () => {
+
+    const [input,changeInput]=useState(
+        { ID:"",Quote:"",Author:""} 
+    )
+
+    const inputHandler=(event)=>{
+        changeInput({...input,[event.target.name]:event.target.value})
+    }
+
+    const readValue=()=>{
+        console.log(input)
+    }
+
   return (
     <div>
         <Navbar /><br></br>
@@ -15,16 +28,19 @@ const Add = () => {
 </div><br></br>
                 <div className="row g-3">
                     <div className="col col-12 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" className="form-control" placeholder='Enter ID'/>
+                        <div className="label form-label">ID</div>
+                        <input type="text" className="form-control"  name='ID' placeholder='Enter ID' value={input.ID} onChange={inputHandler}/>
                     </div>
                     <div className="col col-12 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" className="form-control" placeholder='Enter Quote'/>
+                        <div className="label form-label">Quote</div>
+                        <input type="text" className="form-control" name='Quote' placeholder='Enter Quote' value={input.Quote} onChange={inputHandler}/>
                     </div>
                     <div className="col col-12 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" className="form-control" placeholder='Enter Author'/>
+                        <div className="label form-label">Author</div>
+                        <input type="text" className="form-control" name='Author' placeholder='Enter Author' value={input.Author} onChange={inputHandler}/>
                     </div>
                     <div className="col col-12 col-sm-6 col-md-6 col-lg-6">
-                        <button className="btn btn-success">submit</button>
+                        <button className="btn btn-success" onClick={readValue}>submit</button>
                     </div>
                 </div>
                 </div>

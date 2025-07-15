@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './Navbar'
 
 const Search = () => {
+    
+    const [input,changeInput]=useState(
+        { "ID":""}
+    )
+
+    const inputHandler=(event)=>{
+        changeInput({...input,[event.target.name]:event.target.value})
+    }
+
+    const readValue=()=>{
+        console.log(input)
+    }
   return (
     <div>
         <Navbar /><br></br>
@@ -15,10 +27,10 @@ const Search = () => {
 </div><br></br>
                 <div className="row">
                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                        <input type="text" className="form-control" placeholder='Enter ID to search'/>
+                        <input type="text" className="form-control" name='ID' placeholder='Enter ID to search' value={input.ID} onChange={inputHandler}/>
                     </div>
                     <div className="col-12 col-sm-6 col-md-6 col-lg-6">
-                        <button className="btn btn-primary">search</button>
+                        <button className="btn btn-primary" onClick={readValue}>search</button>
                     </div>
                 </div>
                 </div>
